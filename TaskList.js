@@ -7,7 +7,7 @@ const {
   Text,
 } = React;
 
-import TaskRow from './TaskRow';
+import TaskRow from './TaskRow/Component';
 
 const styles = React.StyleSheet.create({
   container: {

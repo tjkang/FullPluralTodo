@@ -14,7 +14,7 @@ const localStyle = React.StyleSheet.create({
   },
   container: {
     marginBottom: 20,
-  }
+  },
 });
 
 export default function render(baseStyle) {
