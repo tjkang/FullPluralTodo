@@ -4,7 +4,15 @@ const {
   View,
   Text,
   TouchableHighlight,
+  Image,
 } = React;
+
+const localStyle = React.StyleSheet.create({
+  doneButton: {
+    borderRadius: 5,
+    padding: 5,
+  },
+});
 
 export default function render(styles) {
   return (
@@ -15,9 +23,12 @@ export default function render(styles) {
 
       <TouchableHighlight
         onPress={this.onDonePressed.bind(this)}
-        style={styles.doneButton}
+        style={localStyle.doneButton}
+        underlayColor="#ddd"
       >
-        <Text>Done</Text>
+        <Image
+          source={require('../images/done.png')}
+        />
       </TouchableHighlight>
     </View>
   );
