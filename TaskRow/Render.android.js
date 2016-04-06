@@ -19,7 +19,7 @@ export default function render(styles) {
     <View style={styles.container}>
         <Text
           style={styles.label}
-        >andr: {this.props.todo.task}</Text>
+        >{this.props.todo.task}</Text>
 
       <TouchableHighlight
         onPress={this.onDonePressed.bind(this)}
