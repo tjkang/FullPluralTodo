@@ -12,6 +12,10 @@
     "react": "^0.14.8",
     "react-native": "^0.22.2",
     "react-native-swipeout": "2.0.12",
-    "redux": "^3.3.1"
+    "redux": "^3.3.1",
+    "redux-thunk": "^2.0.1"
+  },
+  "devDependencies": {
+    "remote-redux-devtools": "^0.1.5"
   }
 }

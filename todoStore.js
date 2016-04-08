@@ -1,4 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import devTools from 'remote-redux-devtools';
 
 const defaultTodos = [
   {
@@ -54,4 +56,9 @@ function todoStore(state = defaultState, action) {
     }
 }
 
-export default createStore(todoStore);
+// Added config. to enable remote debugging for Redux Dev Tools in chrome
+const enhancer = compose(
+  applyMiddleware(thunk),
+  devTools()
+);
+export default createStore(todoStore, defaultState, enhancer);
