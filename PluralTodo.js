@@ -6,6 +6,7 @@ const {
 
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
+import store from './todoStore';
 
 class PluralTodo extends Component {
   constructor(props, context) {
@@ -13,16 +14,11 @@ class PluralTodo extends Component {
     // this.renderScene = this.renderScene.bind(this);
     // this.onAddStarted = this.onAddStarted.bind(this);
 
-    this.state = {
-      todos: [
-        {
-          task: 'Learn React Native',
-        },
-        {
-          task: 'Learn Redux',
-        },
-      ],
-    };
+    this.state = store.getState();
+
+    store.subscribe(() => {
+      this.setState(store.getState()); // eslint-disable-line react/no-set-state
+    });
   }
 
   onAddStarted() {
@@ -38,19 +34,26 @@ class PluralTodo extends Component {
 
   onAdd(task) {
     console.log('a task was added: ', task);
-    this.state.todos.push({ task });
-    this.setState({ todos: this.state.todos });
+
+    // without redux
+    // this.state.todos.push({ task });
+    // this.setState({ todos: this.state.todos });
+
+    // with redux
+    store.dispatch({
+      type: 'ADD_TODO',
+      task,
+    });
+
     this.refs.nav.pop();
   }
 
   onDone(todo) {
     console.log('task was completed:', todo.task);
-    const filteredTodos =
-      this.state.todos.filter((filterTodo) => {
-        const res = (filterTodo !== todo);
-        return res;
-      });
-    this.setState({ todos: filteredTodos });
+    store.dispatch({
+      type: 'DONE_TODO',
+      todo,
+    });
   }
 
   configureScene() {
